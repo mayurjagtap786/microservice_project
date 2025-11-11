@@ -1,4 +1,4 @@
-package com.example.restwebservice.beans;
+package com.example.auth.beans;
 
 public class User {
 

@@ -1,14 +1,13 @@
-package org.shopping_kart;
+package org.shopping.kart.products;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-
-public class ApiGatewayApplication {
+public class ProductServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ApiGatewayApplication.class, args);
+		SpringApplication.run(ProductServiceApplication.class, args);
 	}
 
 }

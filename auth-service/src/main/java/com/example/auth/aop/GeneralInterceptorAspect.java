@@ -1,6 +1,6 @@
-package org.shopping_kart.aop;
+package com.example.auth.aop;
 
-
+import com.example.auth.beans.LoginRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class GeneralInterceptorAspect {
 	
-	private Logger log = LoggerFactory.getLogger(GeneralInterceptorAspect.class);
+	private final Logger LOG = LoggerFactory.getLogger(GeneralInterceptorAspect.class);
 	@Autowired
 	HttpServletRequest request;
 	
@@ -24,27 +24,27 @@ public class GeneralInterceptorAspect {
 	
 	@Before("loggingPointCut()")
 	public void before(JoinPoint joinPoint) {
-		log.info("Before Method Invoked :: {}",joinPoint.getSignature().getName());
-		log.info("request :"+request.getQueryString());
+		LOG.info("Before Method Invoked :: {}",joinPoint.getSignature().getName());
+		LOG.info("request :"+request.getQueryString());
 		Object arg[] = joinPoint.getArgs();
 		if(arg[0] instanceof LoginRequest){
-			log.info("username:"+((LoginRequest) arg[0]).getUsername());
-			log.info("secrets :"+((LoginRequest) arg[0]).getSecrets());
+			LOG.info("username:"+((LoginRequest) arg[0]).getUsername());
+			LOG.info("secrets :"+((LoginRequest) arg[0]).getSecrets());
 		}
 
-		log.info("Request Data {}",joinPoint.getTarget());
+		LOG.info("Request Data {}",joinPoint.getTarget());
 	}
 	
 	@After("loggingPointCut()")
 	public void after(JoinPoint joinPoint) {
-		log.info("After Method Invoked :: {}",joinPoint.getSignature());
-		log.info("Request Data {}",joinPoint.getTarget());
+		LOG.info("After Method Invoked :: {}",joinPoint.getSignature());
+		LOG.info("Request Data {}",joinPoint.getTarget());
 	}
 	
 	@AfterThrowing(value ="execution(* com.example.restwebservice.controller.*.*(..))",throwing = "exception")
-	public void afterThrowing(JoinPoint joinPoint, Exception exception) {		
-		log.info("After method throwing exception :: {}",joinPoint.getSignature());		
-		log.info("method throwing exception :: {}",exception.getLocalizedMessage());
+	public void afterThrowing(JoinPoint joinPoint, Exception exception) {
+		LOG.info("After method throwing exception :: {}",joinPoint.getSignature());
+		LOG.info("method throwing exception :: {}",exception.getLocalizedMessage());
 		
 	}
 
