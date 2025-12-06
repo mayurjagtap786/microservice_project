@@ -1,0 +1,62 @@
+version: "3.9"
+
+services:
+  mysqldb:
+    image: mysql:8
+    container_name: mysqldb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: authdb
+    ports:
+      - "3306:3306"
+    networks:
+      - my-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  cloud-config:
+    build: ./cloud-config
+    container_name: cloud-config
+    ports:
+      - "8888:8888"
+    networks:
+      - my-network
+    depends_on:
+      - mysqldb
+    environment:
+      # Add config service environment variables if needed
+      SPRING_PROFILES_ACTIVE: dev
+
+  auth-service:
+    build: ./auth-service
+    container_name: auth-service
+    ports:
+      - "8080:8080"
+    networks:
+      - my-network
+    depends_on:
+      - cloud-config
+      - mysqldb
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://127.0.0.1:3306/workwave
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_CLOUD_CONFIG_URI: http://cloud-config:8888
+      SPRING_PROFILES_ACTIVE: dev
+
+  angular-app:
+    build: ./shopping-kart
+    container_name: front-end
+    ports:
+      - "4200:80"
+    networks:
+      - my-network
+    depends_on:
+      - auth-service
+
+networks:
+  my-network:
+    driver: bridge
