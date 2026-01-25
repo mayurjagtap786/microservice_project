@@ -5,5 +5,12 @@ spring:
     import: optional:configserver:http://localhost:8888
   profiles:
     active: dev
-server:
-  port: 8081
+eureka:
+  client:
+    service-url:
+      default-zone: http://loclhost:8761/eureka/
+logging:
+  level:
+    org:
+      springframework:
+        security: trace

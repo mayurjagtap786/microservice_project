@@ -3,6 +3,10 @@ package com.example.auth.controller;
 
 import com.example.auth.beans.LoginRequest;
 import com.example.auth.exception.*;
+
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
+
 @RestController
 @RequestMapping("/api")
+@Slf4j
 public class LoginController {
 
     @Autowired
@@ -34,13 +40,12 @@ public class LoginController {
           new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),loginRequest.getSecrets())
         );
         if(authentication!=null){
-            System.out.println("asdfadfadffadf success ");
+            log.debug("User {} Login successfully done....",loginRequest.getUsername());
             response.put(HttpStatusCode.valueOf(200),"Login Successfully");
             return  ResponseEntity.ok(response);
         }else {
-            System.out.println("asdfadfadffadf error ");
+            log.error("User {} Login failed....",loginRequest.getUsername());
             throw new UserNotFoundException("user not exist");
         }
-
     }
 }
