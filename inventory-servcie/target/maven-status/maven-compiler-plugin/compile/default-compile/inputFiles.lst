@@ -1,0 +1,10 @@
+H:\project_workspace\shopping-kart-sevices\inventory-servcie\src\main\java\org\shopping\kart\inventory\controller\GlobalExceptionHandler.java
+H:\project_workspace\shopping-kart-sevices\inventory-servcie\src\main\java\org\shopping\kart\inventory\controller\InventoryController.java
+H:\project_workspace\shopping-kart-sevices\inventory-servcie\src\main\java\org\shopping\kart\inventory\dto\InventoryRequest.java
+H:\project_workspace\shopping-kart-sevices\inventory-servcie\src\main\java\org\shopping\kart\inventory\dto\InventoryResponse.java
+H:\project_workspace\shopping-kart-sevices\inventory-servcie\src\main\java\org\shopping\kart\inventory\exception\InsufficientStockException.java
+H:\project_workspace\shopping-kart-sevices\inventory-servcie\src\main\java\org\shopping\kart\inventory\exception\InventoryNotFound.java
+H:\project_workspace\shopping-kart-sevices\inventory-servcie\src\main\java\org\shopping\kart\inventory\InventoryServcieApplication.java
+H:\project_workspace\shopping-kart-sevices\inventory-servcie\src\main\java\org\shopping\kart\inventory\model\Inventory.java
+H:\project_workspace\shopping-kart-sevices\inventory-servcie\src\main\java\org\shopping\kart\inventory\repository\InventoryRepository.java
+H:\project_workspace\shopping-kart-sevices\inventory-servcie\src\main\java\org\shopping\kart\inventory\service\InventoryService.java
