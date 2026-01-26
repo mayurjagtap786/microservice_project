@@ -17,7 +17,7 @@ public class InventoryController {
     private InventoryService inventoryService;
 
     @PostMapping("/add")
-    public ResponseEntity<String> addInventory(InventoryRequest inventoryRequest){
+    public ResponseEntity<String> addInventory(@RequestBody InventoryRequest inventoryRequest){
         Inventory inventory = inventoryService.createInventory(inventoryRequest);
         return ResponseEntity.ok("Stock added successfully");
     }
